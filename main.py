@@ -6,6 +6,9 @@ from playsound import playsound
 
 import time
 
+FOODSOUND = "GameSounds/food_sound.wav"
+GAMEOVER = "GameSounds/game_over.wav"
+
 screen = Screen()
 screen.setup(600,600)
 screen.bgcolor("black")
@@ -35,7 +38,7 @@ while game_is_on:
     if food.distance(snake.head) < 15:
         food.refresh()
         snake.extend()
-        playsound("Snake/GameSounds/food_sound.wav", False)
+        playsound(FOODSOUND, False)
         score.increase_score()
     
     #detect collision with wall
@@ -52,6 +55,6 @@ while game_is_on:
             game_is_on = False
     
     if game_is_on == False:
-        playsound("Snake/GameSounds/game_over.wav", False)
+        playsound(GAMEOVER, False)
 
 screen.exitonclick()
