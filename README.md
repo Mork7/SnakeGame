@@ -1,4 +1,4 @@
-#READ_ME
+#README
 
 If python and playsound are not installed, run the attached script 'install_python_snake_modules.sh'
 
