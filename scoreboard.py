@@ -3,6 +3,7 @@ from snake import Snake as snake
 
 ALIGNMENT = "center"
 FONT = ("Courier",24,"normal")
+GAMEOVERFONT = ("Courier",36,"normal")
 
 class Scoreboard(Turtle):
 
@@ -25,4 +26,4 @@ class Scoreboard(Turtle):
 
     def game_over(self):
         self.goto(0,0)
-        self.write("GAME OVER",align=ALIGNMENT,font=FONT)
+        self.write("GAME OVER",align=ALIGNMENT,font=GAMEOVERFONT)
