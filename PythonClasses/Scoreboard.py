@@ -1,5 +1,4 @@
 from turtle import Turtle
-from snake import Snake as snake
 
 ALIGNMENT = "center"
 FONT = ("Courier",24,"normal")
@@ -7,8 +6,8 @@ GAMEOVERFONT = ("Courier",36,"normal")
 
 class Scoreboard(Turtle):
 
-    def __init__(self, shape: str = "classic", undobuffersize: int = 1000, visible: bool = True) -> None:
-        super().__init__(shape, undobuffersize, visible)
+    def __init__(self) -> None:
+        super().__init__()
         self.score = 0
         self.color("white")
         self.hideturtle()

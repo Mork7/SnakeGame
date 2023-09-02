@@ -6,8 +6,8 @@ class GameTimer(Turtle):
 
     def __init__(self) -> None:
         self.timer = Turtle()
-        self.timer.penup()  # Lift the pen to prevent drawing lines
-        self.timer.goto(0,-300)  # Set the initial position
+        self.timer.penup()
+        self.timer.goto(0,-300) 
         self.timer.color("white")
         self.timer.hideturtle()
 

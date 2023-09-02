@@ -1,28 +1,46 @@
+#imports 
 from turtle import Screen
-from snake import Snake
-from food import Food
-from game_timer import GameTimer
-from scoreboard import Scoreboard, ALIGNMENT, FONT
+from PythonClasses.Snake import Snake
+from PythonClasses.Food import Food
+from PythonClasses.GameTimer import GameTimer
+from PythonClasses.Scoreboard import Scoreboard, ALIGNMENT, FONT
 import time
 import os
 import pygame
 
 
-#declare constants
-GAMEOVER = os.path.join("SnakeGame", "GameSounds", "game_over.wav")
-FOODSOUND = os.path.join("SnakeGame", "GameSounds", "food_sound.wav")
+#declare constants and create paths independent of os
+GAMEOVER = os.path.join("GameSounds", "game_over.wav")
+FOODSOUND = os.path.join("GameSounds", "food_sound.wav")
 
 #intialize pygame.mixer and load up game sounds 
 pygame.mixer.init()
 game_over_sound = pygame.mixer.Sound(GAMEOVER)
 food_sound = pygame.mixer.Sound(FOODSOUND)
 
+#This is take input from user and set a difficulty, the lower the sleep time the faster the snake moves
+def set_difficulty():
+    choice = input("Choose a difficulty: easy, med, hard: ")
+    if choice == "easy":
+        return 0.1
+    elif choice == "medium":
+        return 0.07
+    elif choice == "hard":
+        return 0.05 
+    else:
+        # Handle invalid input (e.g., user entered something other than 'easy', 'medium', or 'hard')
+        print("Invalid choice. Defaulting to medium difficulty.")
+        return 0.07
+
+#set difficulty before screen is created
+difficulty = set_difficulty()
+
 #set up screen
 screen = Screen()
 screen.setup(600,600)
 screen.bgcolor("black")
 screen.title("My Snake Game")
-screen.tracer(0)
+screen.tracer(10)
 
 #create objects
 snake = Snake()
@@ -40,13 +58,12 @@ screen.onkey(snake.right,"Right")
 #start the timer
 start_time = time.time()
 
-
 #the game loop
 game_is_on = True
 
 while game_is_on:
     screen.update()
-    time.sleep(0.1)
+    time.sleep(difficulty)
     current_time = time.time()
 
     snake.move()
