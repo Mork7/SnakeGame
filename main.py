@@ -2,12 +2,17 @@ from turtle import Screen
 from snake import Snake
 from food import Food
 from scoreboard import Scoreboard, ALIGNMENT, FONT
-from playsound import playsound
-
 import time
+import os
+import pygame
 
-FOODSOUND = "GameSounds/food_sound.wav"
-GAMEOVER = "GameSounds/game_over.wav"
+pygame.mixer.init()
+
+GAMEOVER = os.path.join("SnakeGame", "GameSounds", "game_over.wav")
+FOODSOUND = os.path.join("SnakeGame", "GameSounds", "food_sound.wav")
+
+game_over_sound = pygame.mixer.Sound(GAMEOVER)
+food_sound = pygame.mixer.Sound(FOODSOUND)
 
 screen = Screen()
 screen.setup(600,600)
@@ -38,7 +43,7 @@ while game_is_on:
     if food.distance(snake.head) < 15:
         food.refresh()
         snake.extend()
-        playsound(FOODSOUND, False)
+        food_sound.play()
         score.increase_score()
     
     #detect collision with wall
@@ -55,6 +60,6 @@ while game_is_on:
             game_is_on = False
     
     if game_is_on == False:
-        playsound(GAMEOVER, False)
+        game_over_sound.play()
 
 screen.exitonclick()

@@ -1,17 +1,14 @@
 #!/bin/bash
 
-# Check if sudo is available
-if ! command -v sudo &> /dev/null; then
-    echo "sudo is not available. Please make sure you have administrative privileges."
+# Check for administrative privileges
+if [ "$EUID" -ne 0 ]; then
+    echo "This script requires administrative privileges. Please run it as root or with sudo."
     exit 1
 fi
 
-# Update package list and install Python 3
-sudo apt update
-sudo apt install -y python3 python3-pip
-
-# Install Playsound modules
-pip3 install playsound
+# Update package list and install Python 3 and Pygame
+apt update
+apt install -y python3 python3-pip
+pip3 install pygame
 
 echo "Installation completed."
-
