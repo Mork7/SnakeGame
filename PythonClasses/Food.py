@@ -14,6 +14,6 @@ class Food(Turtle):
 
     #create a new food object at random positions within margins (560,560) of the (600,600) screen to avoid collisions with walls 
     def refresh(self):
-        random_x = random.randint(-280,280)
-        random_y = random.randint(-280,280)
+        random_x = random.randint(-275,275)
+        random_y = random.randint(-275,275)
         self.goto(random_x,random_y)

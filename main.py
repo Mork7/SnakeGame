@@ -4,10 +4,13 @@ from PythonClasses.Snake import Snake
 from PythonClasses.Food import Food
 from PythonClasses.GameTimer import GameTimer
 from PythonClasses.Scoreboard import Scoreboard, ALIGNMENT, FONT
+from colorama import Fore, Style, init
 import time
 import os
 import pygame
 
+# Initialize colorama
+init(autoreset=True)
 
 #declare constants and create paths independent of os
 GAMEOVER = os.path.join("GameSounds", "game_over.wav")
@@ -18,9 +21,13 @@ pygame.mixer.init()
 game_over_sound = pygame.mixer.Sound(GAMEOVER)
 food_sound = pygame.mixer.Sound(FOODSOUND)
 
-#This is take input from user and set a difficulty, the lower the sleep time the faster the snake moves
+#This takes input from user and set a difficulty, the lower the sleep time the faster the snake moves
 def set_difficulty():
-    choice = input("Choose a difficulty: easy, med, hard: ")
+
+    print(Fore.GREEN + "easy" + ", " + Fore.YELLOW + "med" + ", "  + Fore.RED +" hard")
+    choice = input("Choose a difficulty: ")
+    Style.RESET_ALL
+    
     if choice == "easy":
         return 0.1
     elif choice == "medium":
